@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script src="https://leancloud.cn/scripts/lib/av-0.4.5.min.js"></script>
+    <script src="./angular.min.js"></script>
+    <script src="./app.js"></script>
+</head>
+<body ng-app="dashboardApp">
+
+<div id="pageParser" class="container" ng-controller="ParserController" ng-init="init()">
+    <div class="well row">
+        <h4>Page parser</h4>
+
+        <div>
+            <div class="input-group">
+                  <span class="input-group-addon">
+                    <input ng-model="localTest" type="checkbox">&nbsp; Local
+                  </span>
+
+                <input type="text" class="form-control" ng-model="url">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" ng-click="parsePage()">Parse!</button>
+      </span>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px">
+            <button style="margin-right: 10px"
+                    class="btn btn-default"
+                    ng-click="setExample(api.get('exampleUrl'))" ng-repeat="api in apis">
+                {{api.get('apiName')}}
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <pre>{{result |json}}</pre>
+        <div>
+            Result last update at:
+            <span>{{lastUpdate}}</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
